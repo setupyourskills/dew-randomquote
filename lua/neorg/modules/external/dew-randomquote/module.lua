@@ -23,6 +23,7 @@ module.load = function()
 end
 
 module.config.public = {
+  limit = 100,
   prefix = "",
 }
 
@@ -37,7 +38,7 @@ module.public = {
 module.private = {
   formatting = function(content, author, prefix)
     local wrapped_content =
-      require("neorg.core.modules").get_module("external.neorg-dew").wrap_text(content, 100, prefix)
+      require("neorg.core.modules").get_module("external.neorg-dew").wrap_text(content, module.config.public.limit, prefix)
 
     local lines = {
       prefix .. "   QUOTE",
