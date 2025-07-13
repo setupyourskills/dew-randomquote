@@ -1,8 +1,8 @@
 # Dew Random Quote
 
-🌿 **neorg-dew-crumb** is a minimal, focused [Neorg](https://github.com/nvim-neorg/neorg) extension designed to insert beautifully formatted, randomly fetched quotes into your notes.
+🌿 **Dew Random Quote** is a minimal, focused [Neorg](https://github.com/nvim-neorg/neorg) extension designed to insert beautifully formatted, randomly fetched quotes into your notes.
 
-This module is part of the [neorg-dew](https://github.com/setupyourskills/neorg-dew) ecosystem.
+This module is part of the [Neorg Dew](https://github.com/setupyourskills/neorg-dew) ecosystem.
 
 ## Features
 
@@ -19,7 +19,7 @@ This module is part of the [neorg-dew](https://github.com/setupyourskills/neorg-
 ### Prerequisites
 
 - A functional installation of [Neorg](https://github.com/nvim-neorg/neorg) is required for this module to work.
-- The core module [Neorg-dew](https://github.com/setupyourskills/neorg-dew) must be installed, as it provides essential base libraries.
+- The core module [Neorg Dew](https://github.com/setupyourskills/neorg-dew) must be installed, as it provides essential base libraries.
 
 ### Using Lazy.nvim
 
