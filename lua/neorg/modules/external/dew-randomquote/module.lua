@@ -1,5 +1,6 @@
 local neorg = require "neorg.core"
 local modules = neorg.modules
+local neorg_dew = require("neorg.core.modules").get_module "external.neorg-dew"
 
 local api = vim.api
 
@@ -38,7 +39,7 @@ module.public = {
 module.private = {
   formatting = function(content, author, prefix)
     local wrapped_content =
-      require("neorg.core.modules").get_module("external.neorg-dew").wrap_text(content, module.config.public.limit, prefix)
+      neorg_dew.wrap_text(content, module.config.public.limit, prefix)
 
     local lines = {
       prefix .. "   QUOTE",
