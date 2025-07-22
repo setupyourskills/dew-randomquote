@@ -4,7 +4,6 @@ local modules = neorg.modules
 local api = vim.api
 
 local module = modules.create "external.dew-randomquote"
-local neorg_dew = require("neorg.core.modules").get_module "external.neorg-dew"
 
 module.setup = function()
   return {
@@ -39,7 +38,7 @@ module.public = {
 module.private = {
   formatting = function(content, author, prefix)
     local wrapped_content =
-      neorg_dew.wrap_text(content, module.config.public.limit, prefix)
+      modules.get_module("external.neorg-dew").wrap_text(content, module.config.public.limit, prefix)
 
     local lines = {
       prefix .. "   QUOTE",
