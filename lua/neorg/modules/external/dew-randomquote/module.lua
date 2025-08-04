@@ -25,11 +25,29 @@ end
 module.config.public = {
   limit = 100,
   prefix = "",
+  provider_name = "quotable",
+}
+
+module.config.private = {
+  providers = {
+    quotable = {
+      url = "http://api.quotable.io/random",
+      parse = function(response)
+        return response.content, response.author
+      end,
+    },
+    zenquotes = {
+      url = "https://zenquotes.io/api/random",
+      parse = function(response)
+        return response[1].q, response[1].a
+      end,
+    },
+  },
 }
 
 module.public = {
   random_quote = function()
-    local quote, author = unpack(module.private.get_random_quote())
+    local quote, author = module.private.get_random_quote()
 
     return module.private.formatting(quote, author, module.config.public.prefix)
   end,
@@ -58,21 +76,19 @@ module.private = {
   end,
 
   get_random_quote = function()
-    local apiUrl = "http://api.quotable.io/random"
-    local response = vim.fn.system { "curl", "-s", apiUrl }
+    local provider = module.config.private.providers[module.config.public.provider_name]
+
+    if not provider then
+      error("Provider " .. module.config.public.provider_name .. " is unkown!")
+    end
+
+    local response = vim.fn.system { "curl", "-s", provider.url }
 
     if response == "" then
-      return nil, "Failed to get response"
+      error("Failed to get response!")
     end
 
-    local content = response:match '"content":"(.-)"'
-    local author = response:match '"authorSlug":"(.-)"'
-
-    if not content then
-      return nil, "No content found"
-    end
-
-    return { content, author }
+    return provider.parse(vim.fn.json_decode(response))
   end,
 }
 
