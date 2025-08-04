@@ -43,9 +43,21 @@ Make sure all of them are loaded through Neorg’s module system in your config:
     config = {
         limit = 100, -- Line length limit for wrapping the quote text
         prefix = ">> ", -- Optionnal prefix added to each line of the inserted quote
+        provider_name = "quotable", -- Name of the quote provider 
     },
 },
 ```
+
+### Available Quote Providers
+
+You can specify the quote provider you'd like to use in your configuration.
+
+Use the corresponding name from the list below:
+
+| Provider Name (`config`)   | API Used     |
+|--------------------------|--------------|
+| `quotable`                 | [quotable.io](https://quotable.io)  |
+| `zenquotes`                | [zenquotes.io](https://zenquotes.io) |
 
 ## Usage
 
